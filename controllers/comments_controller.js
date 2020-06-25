@@ -14,6 +14,20 @@ module.exports.create = async function(req, res){
            post.comments.push(comment);
            post.save();
            
+           if(req.xhr){
+               //when api call is made only to send users id and name without sending whole info that may contain password
+               comment =  await comment.populate('user', 'name').execPopulate();
+
+               return res.status(200).json({
+                   data: {
+                       comment : comment
+                   }, 
+                   meassage: "Post created!"
+               });
+
+           }
+
+
            req.flash('success', 'Comment Added!');
            res.redirect('/');
        }
@@ -35,7 +49,17 @@ module.exports.destroy = async function(req, res){
     
             let post = await Post.findByIdAndUpdate(postId, { $pull: {comments: req.params.id}});
             
-            req.flash('success', 'Comment Deleted Successfully!');
+            //send the comment id which was deleted in response to ajax call
+            if(req.xhr){
+                return res.status(200).json({
+                    data: {
+                        comment_id : req.params.id
+                    },
+                    message: "Post deleted"
+                });
+            }
+
+            req.flash('success', 'Comment Deleted!');
             return res.redirect('back');
         } else{
             req.flash('error', 'Unauthorized');

@@ -8,13 +8,17 @@ module.exports.create = async function(req,res){
             user: req.user._id
           });
           
+          // sending back json response
           if(req.xhr){
+              // if we want to populate only the name of user in the post when API call is made
+              post =  await post.populate('user', 'name').execPopulate();
+              
               return res.status(200).json({
                   data: {
                       post: post
                   },
                   message: "Post Created!"     
-              })
+              });
           }
 
           req.flash('success', 'Post published!');
@@ -37,6 +41,15 @@ module.exports.destroy = async function(req,res){
             
          await Comment.deleteMany({post: req.params.id});
 
+         if(req.xhr){
+             return res.status(200).json({
+                 data:{
+                     post_id: req.params.id
+                 },
+                 message: "Post deleted!"
+             })
+         }
+         
          req.flash('success', 'Post and associated comments deleted!');
 
          return res.redirect('back');
