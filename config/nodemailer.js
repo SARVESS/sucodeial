@@ -1,4 +1,4 @@
-const nodemailer =  reequire('nodemailer');
+const nodemailer =  require('nodemailer');
 const ejs = require('ejs');
 const path =  require('path');
 
@@ -8,7 +8,7 @@ let transporter = nodemailer.createTransport({
     port: 587, // for TLS(Transport Layer Service)
     secure: false,
     auth: {
-        user: 'sucodeial.org@gmail.com',
+        user: 'sucodeial.org',
         pass: 'Sucodeial_#76'
     }
 });
