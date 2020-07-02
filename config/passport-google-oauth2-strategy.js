@@ -5,6 +5,8 @@ const crypto = require('crypto');
 const User = require('../models/user');
 const { access } = require('fs');
 
+require('dotenv').config();
+
 // tell passport to use a new strategy for google login
 passport.use(new googleStrategy({
        clientID: "792191835299-jitvdu3c3g1topiej9svchroqd92k4dv.apps.googleusercontent.com",
