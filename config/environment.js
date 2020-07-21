@@ -10,31 +10,6 @@ const accessLogStream = rfs.createStream('access.log', {
     path: logDirectory
 });
 
-const development = {
-    name:'development',
-    asset_path: './assets',
-    session_cookie_key: 'blahsomething',
-    db: 'sucodeial_development',
-    smtp: {
-        service: 'gmail',
-        host: 'smtp.gmail.com',
-        port: 587, // for TLS(Transport Layer Service)
-        secure: false,
-        auth: {
-            user: 'sucodeial.org',
-            pass: 'Sucodeial_#76'
-        }
-    },
-    google_client_id: "792191835299-jitvdu3c3g1topiej9svchroqd92k4dv.apps.googleusercontent.com",
-    google_client_secret: "RNKsBlmWjhgj44Qq5bAwUoMc",
-    google_callback_url: "http://localhost:7000/users/auth/google/callback",
-    jwt_secret: 'sucodeial',
-    morgan: {
-        mode: 'dev',
-        options: {stream: accessLogStream} 
-    }
-}
-
 const production = {
     name: 'production',
     asset_path: process.env.SUCODEIAL_ASSET_PATH,
