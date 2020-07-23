@@ -10,7 +10,6 @@ const accessLogStream = rfs.createStream('access.log', {
     path: logDirectory
 });
 
-
 const production = {
     name: 'production',
     asset_path: process.env.SUCODEIAL_ASSET_PATH,
