@@ -10,6 +10,7 @@ const accessLogStream = rfs.createStream('access.log', {
     path: logDirectory
 });
 
+
 const production = {
     name: 'production',
     asset_path: process.env.SUCODEIAL_ASSET_PATH,
@@ -27,7 +28,7 @@ const production = {
     },
     google_client_id: process.env.SUCODEIAL_GOOGLE_CLIENT_ID,
     google_client_secret: process.env.SUCODEIAL_GOOGLE_CLIENT_SECRET,
-    google_callback_url: process.env.SUCODEIAL_GOOGLE_CALLBACK_URL,
+    google_call_back_url: process.env.SUCODEIAL_GOOGLE_CALLBACK_URL,
     jwt_secret: process.env.SUCODEIAL_JWT_SECRET,
     morgan: {
         mode: 'combined',

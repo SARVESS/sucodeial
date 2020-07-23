@@ -22,7 +22,7 @@ gulp.task('css', function(done){
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
-    done()
+    done();
 });
 
 gulp.task('js', function(done){
